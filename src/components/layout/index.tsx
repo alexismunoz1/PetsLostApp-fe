@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import css from "./layout.css";
-import { Header } from "components/header";
+import { Header } from "../header";
 
 function Layout() {
    return (
