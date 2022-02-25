@@ -5,7 +5,8 @@
       "outDir": "dist",
       "esModuleInterop": true,
       "moduleResolution": "node",
-      "jsx": "react"
+      "jsx": "react",
+      "removeComments": true
    },
    "include": ["src/**/*.*"]
 }
