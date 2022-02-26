@@ -16,6 +16,7 @@ export async function checkEmail(email: string): Promise<any> {
    if (res.status === 200) {
       return data;
    }
+   return;
 }
 
 export async function getTokenUser(email: string, password: string) {
@@ -35,4 +36,28 @@ export async function getTokenUser(email: string, password: string) {
    if (res.status === 200) {
       return token;
    }
+   return;
+}
+
+type dataSignUp = {
+   fullname: string;
+   email: string;
+   password: string;
+};
+
+export async function singup(data: dataSignUp) {
+   const res = await fetch(`${API_BASE_URL}/auth`, {
+      method: "POST",
+      headers: {
+         "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+   });
+
+   const newUser = await res.json();
+
+   if (res.status === 200) {
+      return newUser;
+   }
+   return;
 }

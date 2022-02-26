@@ -2,28 +2,33 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { MainButton } from "ui/buttons";
 import { InputComp } from "ui/inputs";
-import { useUserDataValue, useUserToken } from "hooks/hooks";
+import { useUserEmailValue, useUserNameValue, useSetToken } from "hooks/hooks";
 import { getTokenUser } from "lib/apis";
 
 export function LoginPage() {
    const navigate = useNavigate();
-   const userData = useUserDataValue();
-   const [userToken, setUserToken] = useUserToken();
+   const userEmail = useUserEmailValue();
+   const userFullname = useUserNameValue();
+   const [userToken, setUserToken] = useSetToken();
+
+   console.log("userEmail", userEmail);
+   console.log("userFullname", userFullname);
 
    const handleSubmit = async (e) => {
       e.preventDefault();
       const password = e.target.password.value;
       if (!password) return alert("Ingrese una contraseña");
 
-      const token = await getTokenUser(userData.email, password);
+      const token = await getTokenUser(userEmail.email, password);
       if (token) {
          setUserToken({
             token: token,
          });
          localStorage.setItem("auth_token", token);
+         alert(`Bienvenido ${userFullname.fullname}!`);
          navigate("/");
       } else {
-         alert(`${userData.fullname}, la contraseña es incorrecta`);
+         alert(`La contraseña es incorrecta`);
       }
    };
 

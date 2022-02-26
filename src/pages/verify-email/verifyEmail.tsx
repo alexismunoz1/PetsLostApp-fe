@@ -3,30 +3,40 @@ import { useNavigate } from "react-router-dom";
 import { MainButton } from "ui/buttons";
 import { InputComp } from "ui/inputs";
 import { checkEmail } from "lib/apis";
-import { useUserData } from "hooks/hooks";
+import { useUserEmail, useUserName, emailRegex } from "hooks/hooks";
 
 function VerifyEmail() {
-   const emailRegex =
-      /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
    const navigate = useNavigate();
-   const [userData, setUserData] = useUserData();
+   const [userEmail, setUserEmail] = useUserEmail();
+   const [userName, setUserName] = useUserName();
 
    const handleSubmit = async (e) => {
       e.preventDefault();
       const email = e.target.email.value;
+
       if (!email) return alert("Ingrese un email");
       if (!emailRegex.test(email)) return alert("Por favor ingrese un email válido");
 
       const response = await checkEmail(email);
       if (response) {
-         setUserData({
+         setUserEmail({
             email: response.email,
+         });
+
+         setUserName({
             fullname: response.fullname,
          });
 
          navigate("/login");
       } else {
-         console.log("Email does not exist");
+         const result = window.confirm("El emial no existe ¿desea registrarse?");
+         if (result) {
+            setUserEmail({
+               email: email,
+            });
+
+            navigate("/my-data");
+         }
       }
    };
 

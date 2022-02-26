@@ -7,6 +7,10 @@ import {
    useSetRecoilState,
 } from "recoil";
 
+export const emailRegex =
+   /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
+
+// ClICK BURGER MENU
 export const burgerStateAtom = atom({
    key: "burgerClick",
    default: false,
@@ -19,31 +23,56 @@ export const burgerState = selector({
    },
 });
 
-// userStateAtom
-
-export const userDataAtom = atom({
-   key: "userDataAtom",
+// EMAIL
+export const userEmailAtom = atom({
+   key: "userEmailAtom",
    default: {
       email: "",
+   },
+});
+
+export const userEmail = selector({
+   key: "userEmail",
+   get: async ({ get }) => {
+      return get(userEmailAtom);
+   },
+});
+
+export const useUserEmail = () => useRecoilState(userEmailAtom);
+export const useUserEmailValue = () => useRecoilValue(userEmail);
+
+// FULLNAME
+export const userNameAtom = atom({
+   key: "userNameAtom",
+   default: {
       fullname: "",
    },
 });
 
-export const useUserData = () => useRecoilState(userDataAtom);
-
-export const userData = selector({
-   key: "userData",
+export const userName = selector({
+   key: "userName",
    get: async ({ get }) => {
-      return get(userDataAtom);
+      return get(userNameAtom);
    },
 });
 
-export const useUserDataValue = () => useRecoilValue(userData);
+export const useUserName = () => useRecoilState(userNameAtom);
+export const useUserNameValue = () => useRecoilValue(userName);
 
+// TOKEN
 export const userTokenAtom = atom({
    key: "userToken",
    default: {
-      token: "",
+      token: null,
    },
 });
-export const useUserToken = () => useRecoilState(userTokenAtom);
+
+// export const userToken = selector({
+//    key: "userToken",
+//    get: async ({ get }) => {
+//       return get(userTokenAtom);
+//    },
+// });
+
+export const useSetToken = () => useRecoilState(userTokenAtom);
+// export const useUserTokenValue = () => useRecoilValue(userToken);
