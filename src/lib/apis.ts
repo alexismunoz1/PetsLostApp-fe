@@ -1,4 +1,6 @@
 export const API_BASE_URL = "https://dwf-m7-postgresql.herokuapp.com";
+export const emailRegex =
+   /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
 
 export async function checkEmail(email: string): Promise<any> {
    const res = await fetch(`${API_BASE_URL}/auth/verify-email`, {
@@ -20,6 +22,11 @@ export async function checkEmail(email: string): Promise<any> {
 }
 
 export async function getTokenUser(email: string, password: string) {
+   console.log("getTokenUser", {
+      email,
+      password,
+   });
+
    const res = await fetch(`${API_BASE_URL}/auth/token`, {
       method: "POST",
       headers: {

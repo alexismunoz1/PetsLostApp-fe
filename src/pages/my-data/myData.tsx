@@ -2,14 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { MainButton } from "ui/buttons";
 import { InputComp } from "ui/inputs";
-import { emailRegex, useSetToken, useUserEmail, useUserName } from "hooks/hooks";
-import { getTokenUser, singup } from "lib/apis";
+import { useUserToken, useUserEmail, useUserName } from "hooks/hooks";
+import { emailRegex, getTokenUser, singup } from "lib/apis";
 
 export function MyDataPage() {
    const navigate = useNavigate();
    const [userEmail, setUserEmail] = useUserEmail();
    const [userName, setUserName] = useUserName();
-   const [userToken, setUserToken] = useSetToken();
+   const [userToken, setUserToken] = useUserToken();
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -44,7 +44,6 @@ export function MyDataPage() {
             token,
          });
 
-         localStorage.setItem("auth_token", token);
          navigate("/");
       }
    };
@@ -53,7 +52,11 @@ export function MyDataPage() {
       <div>
          <h1>My Data</h1>
          <form onSubmit={handleSubmit}>
-            <InputComp label={"nombre"} name={"fullname"}></InputComp>
+            <InputComp
+               label={"nombre"}
+               name={"fullname"}
+               defaultValue={userName.fullname}
+            ></InputComp>
             <InputComp
                label={"email"}
                name={"email"}
@@ -63,7 +66,6 @@ export function MyDataPage() {
                label={"contraseña"}
                type={"password"}
                name={"password"}
-               defaultValue={userName.fullname}
             ></InputComp>
             <InputComp
                label={"confirmar contraseña"}

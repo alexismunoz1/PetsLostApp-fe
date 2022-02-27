@@ -1,20 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import css from "./index.css";
 import logo from "assets/logo.svg";
-import { BurgerMenu } from "../../ui/burger/burger";
-import { useRecoilState } from "recoil";
-import { burgerStateAtom } from "../../hooks/hooks";
-import { Link } from "react-router-dom";
+import { BurgerMenu } from "ui/burger/burger";
+import { useBurgerState } from "hooks/hooks";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
-   const [burgerState, setBurgerState] = useRecoilState(burgerStateAtom);
-   const handleClick = () => setBurgerState(!burgerState);
+   const navigate = useNavigate();
+   const [burgerState, setBurgerState] = useBurgerState();
+   const handleClick = (e) => {
+      if (e.target.id == "Logo") {
+         navigate("/");
+         setBurgerState(false);
+      } else {
+         setBurgerState(!burgerState);
+      }
+   };
 
    return (
       <header className={css.root}>
-         <Link to={"/"}>
-            <img className="" src={logo} />
-         </Link>
+         <img className="" id="Logo" src={logo} onClick={handleClick} />
          <div onClick={handleClick}>
             <BurgerMenu onBurger={burgerState} />
          </div>

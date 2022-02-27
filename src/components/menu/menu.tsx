@@ -1,28 +1,33 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import css from "./index.css";
+import { useNavigate } from "react-router-dom";
+import { useUserToken, useBurgerState } from "hooks/hooks";
 import { CloseSesion } from "ui/close-sesion";
-import { useRecoilState } from "recoil";
-import { burgerStateAtom, useSetToken } from "hooks/hooks";
 
 const inactive = css.menu;
 const active = `${css.menu} ${css.active}`;
 
 export function Menu() {
    const navigate = useNavigate();
-   const [burgerState, setBurgerState] = useRecoilState(burgerStateAtom);
-   const [userToken, setToken] = useSetToken();
+   const [burgerState, setBurgerState] = useBurgerState();
+   const [userToken, setToken] = useUserToken();
    const handleClick = (e) => {
       setBurgerState(!burgerState);
 
-      if (!userToken.token) {
+      if (userToken.token) {
+         switch (e.target.id) {
+            case "MyData":
+               navigate("/my-data");
+               break;
+            case "MyPets":
+               navigate("/my-pets");
+               break;
+            case "ReportPet":
+               navigate("/report-pets");
+               break;
+         }
+      } else {
          navigate("/verify-email");
-      } else if (e.target.id == "MyData") {
-         navigate("/my-data");
-      } else if (e.target.id == "MyPets") {
-         navigate("/my-pets");
-      } else if (e.target.id == "ReportPet") {
-         navigate("/report-pets");
       }
    };
 

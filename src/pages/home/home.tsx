@@ -1,6 +1,5 @@
 import React from "react";
 import { MainButton } from "ui/buttons";
-import { Link } from "react-router-dom";
 
 function Home() {
    return (

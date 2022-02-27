@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import {
    atom,
    useRecoilState,
@@ -6,9 +5,7 @@ import {
    selector,
    useSetRecoilState,
 } from "recoil";
-
-export const emailRegex =
-   /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
+import { recoilPersist } from "recoil-persist";
 
 // ClICK BURGER MENU
 export const burgerStateAtom = atom({
@@ -23,12 +20,20 @@ export const burgerState = selector({
    },
 });
 
+export const useBurgerState = () => useRecoilState(burgerStateAtom);
+
 // EMAIL
+const { persistAtom } = recoilPersist({
+   key: "user_data",
+   storage: localStorage,
+});
+
 export const userEmailAtom = atom({
    key: "userEmailAtom",
    default: {
-      email: "",
+      email: null,
    },
+   effects_UNSTABLE: [persistAtom],
 });
 
 export const userEmail = selector({
@@ -39,14 +44,17 @@ export const userEmail = selector({
 });
 
 export const useUserEmail = () => useRecoilState(userEmailAtom);
+export const useSetUserEmail = () => useSetRecoilState(userEmailAtom);
 export const useUserEmailValue = () => useRecoilValue(userEmail);
 
 // FULLNAME
+
 export const userNameAtom = atom({
    key: "userNameAtom",
    default: {
-      fullname: "",
+      fullname: null,
    },
+   effects_UNSTABLE: [persistAtom],
 });
 
 export const userName = selector({
@@ -57,14 +65,16 @@ export const userName = selector({
 });
 
 export const useUserName = () => useRecoilState(userNameAtom);
+export const useSetUserName = () => useSetRecoilState(userNameAtom);
 export const useUserNameValue = () => useRecoilValue(userName);
 
-// TOKEN
+// USER TOKEN
 export const userTokenAtom = atom({
    key: "userToken",
    default: {
       token: null,
    },
+   effects_UNSTABLE: [persistAtom],
 });
 
 // export const userToken = selector({
@@ -74,5 +84,19 @@ export const userTokenAtom = atom({
 //    },
 // });
 
-export const useSetToken = () => useRecoilState(userTokenAtom);
-// export const useUserTokenValue = () => useRecoilValue(userToken);
+export const useUserToken = () => useRecoilState(userTokenAtom);
+export const useTokenValue = () => useRecoilValue(userTokenAtom);
+export const useSetUserToken = () => useSetRecoilState(userTokenAtom);
+
+// CURRENT CORDS USER
+export const curretCordsAtom = atom({
+   key: "curretCords",
+   default: {
+      lat: null,
+      lng: null,
+   },
+});
+
+export const useUserCords = () => useRecoilState(curretCordsAtom);
+export const useCordsValue = () => useRecoilValue(curretCordsAtom);
+export const useSetUserCords = () => useSetRecoilState(curretCordsAtom);

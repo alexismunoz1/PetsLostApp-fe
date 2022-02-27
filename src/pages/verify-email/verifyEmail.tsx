@@ -2,13 +2,18 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { MainButton } from "ui/buttons";
 import { InputComp } from "ui/inputs";
-import { checkEmail } from "lib/apis";
-import { useUserEmail, useUserName, emailRegex } from "hooks/hooks";
+import { emailRegex, checkEmail } from "lib/apis";
+import { useUserEmail, useUserName } from "hooks/hooks";
 
 function VerifyEmail() {
    const navigate = useNavigate();
    const [userEmail, setUserEmail] = useUserEmail();
    const [userName, setUserName] = useUserName();
+
+   console.log({
+      userEmail,
+      userName,
+   });
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -18,6 +23,7 @@ function VerifyEmail() {
       if (!emailRegex.test(email)) return alert("Por favor ingrese un email válido");
 
       const response = await checkEmail(email);
+
       if (response) {
          setUserEmail({
             email: response.email,
