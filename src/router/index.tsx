@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Layout } from "components/layout/layout";
-import { Home } from "pages/home/home";
-import { VerifyEmail } from "pages/verify-email/verifyEmail";
-import { LoginPage } from "pages/login/login";
-import { MyDataPage } from "pages/my-data/myData";
+import { Layout } from "components/layout/Layout";
+import { Home } from "pages/home/Home";
+import { VerifyEmail } from "pages/verify-email/VerifyEmail";
+import { LoginPage } from "pages/login/Login";
+import { MyDataPage } from "pages/my-data/MyData";
 
 function AppRoutes() {
    return (

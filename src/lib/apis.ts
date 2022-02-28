@@ -1,4 +1,4 @@
-export const API_BASE_URL = "https://dwf-m7-postgresql.herokuapp.com";
+const API_BASE_URL = "https://dwf-m7-postgresql.herokuapp.com";
 export const emailRegex =
    /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
 
@@ -65,6 +65,22 @@ export async function singup(data: dataSignUp) {
 
    if (res.status === 200) {
       return newUser;
+   }
+   return;
+}
+
+export async function getPetsAround(lat, lng) {
+   const res = await fetch(`${API_BASE_URL}/pets/around?lat=${lat}&lng=${lng}`, {
+      method: "GET",
+      headers: {
+         "Content-Type": "application/json",
+      },
+   });
+
+   const pets = await res.json();
+
+   if (res.status === 200) {
+      return pets;
    }
    return;
 }

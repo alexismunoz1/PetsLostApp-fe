@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { MainButton } from "ui/buttons";
-import { InputComp } from "ui/inputs";
+import { MainButton } from "ui/buttons/MainButton";
+import { InputComp } from "ui/inputs/MainInput";
 import { emailRegex, checkEmail } from "lib/apis";
 import { useUserEmail, useUserName } from "hooks/hooks";
 
@@ -9,11 +9,6 @@ function VerifyEmail() {
    const navigate = useNavigate();
    const [userEmail, setUserEmail] = useUserEmail();
    const [userName, setUserName] = useUserName();
-
-   console.log({
-      userEmail,
-      userName,
-   });
 
    const handleSubmit = async (e) => {
       e.preventDefault();

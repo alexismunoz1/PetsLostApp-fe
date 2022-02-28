@@ -1,13 +1,14 @@
 import React from "react";
 import css from "./index.css";
 import logo from "assets/logo.svg";
-import { BurgerMenu } from "ui/burger/burger";
+import { BurgerMenu } from "ui/burger/Burger";
 import { useBurgerState } from "hooks/hooks";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
    const navigate = useNavigate();
    const [burgerState, setBurgerState] = useBurgerState();
+
    const handleClick = (e) => {
       if (e.target.id == "Logo") {
          navigate("/");

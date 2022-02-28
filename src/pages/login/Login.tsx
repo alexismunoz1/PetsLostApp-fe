@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { MainButton } from "ui/buttons";
-import { InputComp } from "ui/inputs";
+import { MainButton } from "ui/buttons/MainButton";
+import { InputComp } from "ui/inputs/MainInput";
 import { useUserEmailValue, useUserNameValue, useUserToken } from "hooks/hooks";
 import { getTokenUser } from "lib/apis";
 
