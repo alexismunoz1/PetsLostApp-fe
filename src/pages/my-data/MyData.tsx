@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { MainButton } from "ui/buttons/MainButton";
-import { InputComp } from "ui/inputs/MainInput";
+import { MainInput } from "ui/inputs/MainInput";
 import { useUserToken, useUserEmail, useUserName } from "hooks/hooks";
 import { emailRegex, getTokenUser, singup } from "lib/apis";
 
@@ -52,26 +52,18 @@ export function MyDataPage() {
       <div>
          <h1>My Data</h1>
          <form onSubmit={handleSubmit}>
-            <InputComp
+            <MainInput
                label={"nombre"}
                name={"fullname"}
                defaultValue={userName.fullname}
-            ></InputComp>
-            <InputComp
-               label={"email"}
-               name={"email"}
-               defaultValue={userEmail.email}
-            ></InputComp>
-            <InputComp
-               label={"contraseña"}
-               type={"password"}
-               name={"password"}
-            ></InputComp>
-            <InputComp
+            />
+            <MainInput label={"email"} name={"email"} defaultValue={userEmail.email} />
+            <MainInput label={"contraseña"} type={"password"} name={"password"} />
+            <MainInput
                label={"confirmar contraseña"}
                type={"password"}
                name={"passwordConfirm"}
-            ></InputComp>
+            />
             <MainButton>Guardar</MainButton>
          </form>
       </div>

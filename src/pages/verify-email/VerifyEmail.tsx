@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { MainButton } from "ui/buttons/MainButton";
-import { InputComp } from "ui/inputs/MainInput";
+import { MainInput } from "ui/inputs/MainInput";
 import { emailRegex, checkEmail } from "lib/apis";
 import { useUserEmail, useUserName } from "hooks/hooks";
 
-function VerifyEmail() {
+export function VerifyEmailPage() {
    const navigate = useNavigate();
    const [userEmail, setUserEmail] = useUserEmail();
    const [userName, setUserName] = useUserName();
@@ -45,11 +45,9 @@ function VerifyEmail() {
       <div>
          <h1>Verify Email</h1>
          <form onSubmit={handleSubmit}>
-            <InputComp label={"Emial"} name={"email"} />
+            <MainInput label={"Emial"} name={"email"} />
             <MainButton>Siguiente</MainButton>
          </form>
       </div>
    );
 }
-
-export { VerifyEmail };

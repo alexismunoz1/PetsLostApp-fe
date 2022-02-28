@@ -1,3 +1,4 @@
+import { recoilPersist } from "recoil-persist";
 import {
    atom,
    useRecoilState,
@@ -5,15 +6,14 @@ import {
    selector,
    useSetRecoilState,
 } from "recoil";
-import { recoilPersist } from "recoil-persist";
 
 // ClICK BURGER MENU
-export const burgerStateAtom = atom({
+const burgerStateAtom = atom({
    key: "burgerClick",
    default: false,
 });
 
-export const burgerState = selector({
+const burgerState = selector({
    key: "burgerState",
    get: ({ get }) => {
       return get(burgerStateAtom);
@@ -28,7 +28,7 @@ const { persistAtom } = recoilPersist({
    storage: localStorage,
 });
 
-export const userEmailAtom = atom({
+const userEmailAtom = atom({
    key: "userEmailAtom",
    default: {
       email: null,
@@ -36,20 +36,13 @@ export const userEmailAtom = atom({
    effects_UNSTABLE: [persistAtom],
 });
 
-export const userEmail = selector({
-   key: "userEmail",
-   get: async ({ get }) => {
-      return get(userEmailAtom);
-   },
-});
-
 export const useUserEmail = () => useRecoilState(userEmailAtom);
 export const useSetUserEmail = () => useSetRecoilState(userEmailAtom);
-export const useUserEmailValue = () => useRecoilValue(userEmail);
+export const useUserEmailValue = () => useRecoilValue(userEmailAtom);
 
 // FULLNAME
 
-export const userNameAtom = atom({
+const userNameAtom = atom({
    key: "userNameAtom",
    default: {
       fullname: null,
@@ -57,19 +50,12 @@ export const userNameAtom = atom({
    effects_UNSTABLE: [persistAtom],
 });
 
-export const userName = selector({
-   key: "userName",
-   get: async ({ get }) => {
-      return get(userNameAtom);
-   },
-});
-
 export const useUserName = () => useRecoilState(userNameAtom);
 export const useSetUserName = () => useSetRecoilState(userNameAtom);
-export const useUserNameValue = () => useRecoilValue(userName);
+export const useUserNameValue = () => useRecoilValue(userNameAtom);
 
 // USER TOKEN
-export const userTokenAtom = atom({
+const userTokenAtom = atom({
    key: "userToken",
    default: {
       token: null,
@@ -77,19 +63,12 @@ export const userTokenAtom = atom({
    effects_UNSTABLE: [persistAtom],
 });
 
-// export const userToken = selector({
-//    key: "userToken",
-//    get: async ({ get }) => {
-//       return get(userTokenAtom);
-//    },
-// });
-
 export const useUserToken = () => useRecoilState(userTokenAtom);
 export const useTokenValue = () => useRecoilValue(userTokenAtom);
 export const useSetUserToken = () => useSetRecoilState(userTokenAtom);
 
 // CURRENT CORDS USER
-export const curretCordsAtom = atom({
+const curretCordsAtom = atom({
    key: "curretCords",
    default: {
       lat: null,
@@ -100,3 +79,15 @@ export const curretCordsAtom = atom({
 export const useUserCords = () => useRecoilState(curretCordsAtom);
 export const useCordsValue = () => useRecoilValue(curretCordsAtom);
 export const useSetUserCords = () => useSetRecoilState(curretCordsAtom);
+
+const reportInfoAtom = atom({
+   key: "reportInfo",
+   default: {
+      petId: null,
+      petname: null,
+   },
+});
+
+export const useReportInfo = () => useRecoilState(reportInfoAtom);
+export const useReportInfoValue = () => useRecoilValue(reportInfoAtom);
+export const useSetReportInfo = () => useSetRecoilState(reportInfoAtom);

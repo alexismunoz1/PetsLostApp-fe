@@ -84,3 +84,39 @@ export async function getPetsAround(lat, lng) {
    }
    return;
 }
+
+type dataReportInfo = {
+   petid: string;
+   fullname: string;
+   phonenumber: string;
+   report: string;
+   token: string;
+};
+
+export async function reportInfo(data: dataReportInfo): Promise<any> {
+   const { petid, fullname, phonenumber, report, token } = data;
+
+   console.log("reportInfo", {
+      petid,
+      fullname,
+      phonenumber,
+      report,
+      token,
+   });
+
+   const res = await fetch(`${API_BASE_URL}/pets/report`, {
+      method: "POST",
+      headers: {
+         "Content-Type": "application/json",
+         Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+         petid,
+         fullname,
+         phonenumber,
+         report,
+      }),
+   });
+
+   return res.json();
+}

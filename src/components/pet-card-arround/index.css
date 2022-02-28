@@ -1,0 +1,57 @@
+.card {
+   max-width: 335px;
+   flex-direction: column;
+   border: 2px solid #000000;
+   box-sizing: border-box;
+   border-radius: 4px;
+   margin: 30px;
+}
+
+.card__image {
+   width: 100%;
+   height: auto;
+}
+
+.card__info-cont {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   padding: 0 15px 10px 15px;
+}
+
+.card__info {
+   font-family: Poppins;
+}
+
+.card__name {
+   margin: 0;
+   font-weight: bold;
+   font-size: 35px;
+   color: #000000;
+}
+
+.card__ubication {
+   margin: 0;
+   font-weight: 500;
+   font-size: 16px;
+   text-transform: uppercase;
+   color: #000000;
+}
+
+.card__state {
+   font-family: Poppins;
+   font-weight: 500;
+   font-size: 16px;
+   text-transform: uppercase;
+}
+
+.card__report-info {
+   width: 170px;
+   font-family: Poppins;
+   font-size: 16px;
+   text-align: right;
+   text-decoration-line: underline;
+   text-transform: uppercase;
+   cursor: pointer;
+   color: #3e91dd;
+}

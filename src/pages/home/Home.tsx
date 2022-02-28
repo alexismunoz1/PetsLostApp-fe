@@ -5,8 +5,8 @@ import { getPetsAround } from "lib/apis";
 import { PetCardArround } from "components/pet-card-arround/PetCardArround";
 
 function Home() {
-   const [pets, setPets] = useState([]);
    const [cords, setCords] = useUserCords();
+   const [pets, setPets] = useState([]);
 
    useEffect(() => {
       if (cords.lat && cords.lng) {
@@ -34,19 +34,27 @@ function Home() {
    return (
       <div>
          <h1>Mascotas perdidas cerca tuyo</h1>
-         <p>
-            Para ver las mascotas reportadas cerca tuyo necesitamos permiso para conocer
-            tu ubicación.
-         </p>
-         <div onClick={getPets}>
-            <MainButton>Dar mi ubicación</MainButton>
+         <div>
+            {pets[1] ? null : (
+               <div>
+                  <p>
+                     Para ver las mascotas reportadas cerca tuyo necesitamos permiso para
+                     conocer tu ubicación.
+                  </p>
+                  <div onClick={getPets}>
+                     <MainButton>Dar mi ubicación</MainButton>
+                  </div>
+               </div>
+            )}
          </div>
+
          <div>
             {pets ? (
                pets.map((pet) => {
                   return (
                      <PetCardArround
                         key={pet.objectID}
+                        petId={pet.objectID}
                         image={pet.petimage}
                         petname={pet.petname}
                         ubication={pet.ubication}

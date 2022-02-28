@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { MainButton } from "ui/buttons/MainButton";
-import { InputComp } from "ui/inputs/MainInput";
+import { MainInput } from "ui/inputs/MainInput";
 import { useUserEmailValue, useUserNameValue, useUserToken } from "hooks/hooks";
 import { getTokenUser } from "lib/apis";
 
@@ -34,7 +34,7 @@ export function LoginPage() {
       <div>
          <h1>Login page</h1>
          <form onSubmit={handleSubmit}>
-            <InputComp label={"contraseña"} type={"password"} name={"password"} />
+            <MainInput label={"contraseña"} type={"password"} name={"password"} />
             <MainButton>Ingresar</MainButton>
          </form>
       </div>

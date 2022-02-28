@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./index.css";
 
-export function InputComp(props) {
+export function MainInput(props) {
    const { label, type, placeholder, name, defaultValue } = props;
 
    return (
