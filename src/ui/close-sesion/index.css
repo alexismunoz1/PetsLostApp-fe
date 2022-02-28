@@ -1,8 +1,13 @@
-.menu-div-emial {
+.email {
+   font-family: Poppins;
+   font-size: 24px;
 }
 
-.menu-emailp {
-}
-
-.menu-sign-off {
+.sign-off {
+   font-family: Poppins;
+   font-size: 16px;
+   text-decoration-line: underline;
+   text-transform: uppercase;
+   color: #c6558b;
+   cursor: pointer;
 }

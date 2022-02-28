@@ -28,6 +28,7 @@ export function ReportInfoPage() {
             report,
             token: token.token,
          });
+
          alert("Reporte enviado");
          navigate("/");
       }

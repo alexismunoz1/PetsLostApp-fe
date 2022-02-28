@@ -64,8 +64,8 @@ const userTokenAtom = atom({
 });
 
 export const useUserToken = () => useRecoilState(userTokenAtom);
-export const useTokenValue = () => useRecoilValue(userTokenAtom);
 export const useSetUserToken = () => useSetRecoilState(userTokenAtom);
+export const useTokenValue = () => useRecoilValue(userTokenAtom);
 
 // CURRENT CORDS USER
 const curretCordsAtom = atom({
@@ -77,8 +77,8 @@ const curretCordsAtom = atom({
 });
 
 export const useUserCords = () => useRecoilState(curretCordsAtom);
-export const useCordsValue = () => useRecoilValue(curretCordsAtom);
 export const useSetUserCords = () => useSetRecoilState(curretCordsAtom);
+export const useCordsValue = () => useRecoilValue(curretCordsAtom);
 
 const reportInfoAtom = atom({
    key: "reportInfo",

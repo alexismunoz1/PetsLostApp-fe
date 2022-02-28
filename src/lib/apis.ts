@@ -22,11 +22,6 @@ export async function checkEmail(email: string): Promise<any> {
 }
 
 export async function getTokenUser(email: string, password: string) {
-   console.log("getTokenUser", {
-      email,
-      password,
-   });
-
    const res = await fetch(`${API_BASE_URL}/auth/token`, {
       method: "POST",
       headers: {
@@ -95,14 +90,6 @@ type dataReportInfo = {
 
 export async function reportInfo(data: dataReportInfo): Promise<any> {
    const { petid, fullname, phonenumber, report, token } = data;
-
-   console.log("reportInfo", {
-      petid,
-      fullname,
-      phonenumber,
-      report,
-      token,
-   });
 
    const res = await fetch(`${API_BASE_URL}/pets/report`, {
       method: "POST",
