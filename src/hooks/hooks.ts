@@ -13,13 +13,6 @@ const burgerStateAtom = atom({
    default: false,
 });
 
-const burgerState = selector({
-   key: "burgerState",
-   get: ({ get }) => {
-      return get(burgerStateAtom);
-   },
-});
-
 export const useBurgerState = () => useRecoilState(burgerStateAtom);
 
 // EMAIL

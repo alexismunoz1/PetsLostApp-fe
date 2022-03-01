@@ -1,0 +1,54 @@
+.card {
+   display: flex;
+   flex-direction: column;
+   width: 335px;
+   border: 2px solid #000000;
+   box-sizing: border-box;
+   border-radius: 4px;
+   margin-bottom: 30px;
+}
+
+.card__image {
+   width: 100%;
+   height: auto;
+}
+
+.card__info-cont {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   padding: 0 15px 10px 15px;
+}
+
+.card__info {
+   font-family: Poppins;
+}
+
+.card__name {
+   margin: 0;
+   font-weight: bold;
+   font-size: 35px;
+   color: #000000;
+}
+
+.card__ubication {
+   margin: 0;
+   font-weight: 500;
+   font-size: 16px;
+   text-transform: uppercase;
+   color: #000000;
+}
+
+.card__state {
+   font-family: Poppins;
+   font-weight: 500;
+   font-size: 16px;
+   text-transform: uppercase;
+}
+
+.card__icon {
+   cursor: pointer;
+   height: 30px;
+   width: auto;
+   margin: auto 0;
+}

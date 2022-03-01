@@ -107,3 +107,15 @@ export async function reportInfo(data: dataReportInfo): Promise<any> {
 
    return res.json();
 }
+
+export async function getUserPets(token: string) {
+   const res = await fetch(`${API_BASE_URL}/me/pets`, {
+      method: "GET",
+      headers: {
+         "Content-Type": "application/json",
+         Authorization: `Bearer ${token}`,
+      },
+   });
+
+   return res.json();
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MainButton } from "ui/buttons/MainButton";
 import { useUserCords } from "hooks/hooks";
 import { getPetsAround } from "lib/apis";
-import { PetCardArround } from "components/pet-card-arround/PetCardArround";
+import { PetCardArround } from "ui/pet-card-arround/PetCardArround";
 
 function Home() {
    const [cords, setCords] = useUserCords();

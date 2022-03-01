@@ -6,8 +6,9 @@ import { VerifyEmailPage } from "pages/verify-email/VerifyEmail";
 import { LoginPage } from "pages/login/Login";
 import { MyDataPage } from "pages/my-data/MyData";
 import { ReportInfoPage } from "pages/report-info/ReportInfo";
+import { MyPetsPage } from "pages/my-pets/MyPets";
 
-function AppRoutes() {
+export function AppRoutes() {
    return (
       <Routes>
          <Route path="/" element={<Layout />}>
@@ -16,9 +17,8 @@ function AppRoutes() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/my-data" element={<MyDataPage />} />
             <Route path="/report-info" element={<ReportInfoPage />} />
+            <Route path="/my-pets" element={<MyPetsPage />} />
          </Route>
       </Routes>
    );
 }
-
-export { AppRoutes };
