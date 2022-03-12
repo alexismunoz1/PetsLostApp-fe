@@ -177,3 +177,16 @@ export async function updateStatePet(petid: string, token: string): Promise<any>
       }),
    });
 }
+
+export async function deletePet(petid: string, token: string): Promise<any> {
+   return await fetch(`${API_BASE_URL}/me/pets`, {
+      method: "DELETE",
+      headers: {
+         "Content-Type": "application/json",
+         Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+         petid,
+      }),
+   });
+}
