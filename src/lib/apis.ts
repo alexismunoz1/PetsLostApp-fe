@@ -131,3 +131,35 @@ export async function getPetById(petId: string, token: string) {
 
    return res.json();
 }
+
+type petData = {
+   petid: string;
+   lat: string;
+   lng: string;
+   petimage: string;
+   petname: string;
+   petstate: string;
+   ubication: string;
+};
+
+export async function editPet(petData: petData, token: string) {
+   const { petid, lat, lng, petimage, petname, ubication } = petData;
+
+   const res = await fetch(`${API_BASE_URL}/me/pets`, {
+      method: "PUT",
+      headers: {
+         "Content-Type": "application/json",
+         Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+         petid,
+         lat,
+         lng,
+         petimage,
+         petname,
+         ubication,
+      }),
+   });
+
+   return res.json();
+}

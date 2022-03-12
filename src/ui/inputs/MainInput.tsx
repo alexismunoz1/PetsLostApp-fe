@@ -6,11 +6,13 @@ type MainInputProps = {
    type?: string;
    placeholder?: string;
    name?: string;
+   value?: string;
+   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
    defaultValue?: string;
 };
 
 export function MainInput(props: MainInputProps) {
-   const { label, type, placeholder, name, defaultValue } = props;
+   const { label, type, placeholder, name, onChange, value, defaultValue } = props;
 
    return (
       <div className={css.root}>
@@ -18,6 +20,8 @@ export function MainInput(props: MainInputProps) {
          <input
             type={type ? type : "text"}
             name={name}
+            value={value}
+            onChange={onChange}
             placeholder={placeholder ? placeholder : ""}
             defaultValue={defaultValue ? defaultValue : ""}
             className={css.input}

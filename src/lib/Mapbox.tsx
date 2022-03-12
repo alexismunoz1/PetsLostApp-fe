@@ -4,12 +4,11 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { MainButton } from "ui/buttons/MainButton";
 import { usePetEditData, useCordsValue } from "atoms/atoms";
 
+const initialCoords: any = [-64.5965932, -34.8403116];
 const Map = ReactMapboxGl({
    accessToken:
       "pk.eyJ1IjoiYWxleGlzbXVub3oxIiwiYSI6ImNrdzVqb3loODJxYXAycHBhdjVzZWtpY3QifQ.V-0kAfHQOapkN5HrZdmUUA",
 });
-
-const initialCoords: any = [-64.5965932, -34.8403116];
 
 const boxStyles = {
    padding: "0 10px",
@@ -33,11 +32,12 @@ export function MapboxSeach() {
       if (petData.lat) {
          setCoords([petData.lng, petData.lat]);
       }
-      // if (!petData.lat && currentLat) {
-      // setCoords([currentLng, currentLat]);
-      // console.log("hay current lat y no pet lat");
-      // }
    }, [petData.lat]);
+
+   function inputChangeHandler(e) {
+      setQuery(e.target.value);
+      if (e.key == "Enter") search();
+   }
 
    async function search() {
       const data = await fetch(
@@ -50,11 +50,6 @@ export function MapboxSeach() {
          lng: parseFloat(data[0].lon),
          ubication: data[0].display_name,
       });
-   }
-
-   function inputChangeHandler(e) {
-      setQuery(e.target.value);
-      if (e.key == "Enter") search();
    }
 
    return (
@@ -88,3 +83,8 @@ export function MapboxSeach() {
       </div>
    );
 }
+
+// if (!petData.lat && currentLat) {
+// setCoords([currentLng, currentLat]);
+// console.log("hay current lat y no pet lat");
+// }
