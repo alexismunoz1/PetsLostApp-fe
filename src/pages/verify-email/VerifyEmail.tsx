@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { MainButton } from "ui/buttons/MainButton";
 import { MainInput } from "ui/inputs/MainInput";
 import { emailRegex, checkEmail } from "lib/apis";
-import { useUserEmail, useUserName } from "hooks/hooks";
+import { useUserEmail, useUserName } from "atoms/atoms";
 
 export function VerifyEmailPage() {
    const navigate = useNavigate();

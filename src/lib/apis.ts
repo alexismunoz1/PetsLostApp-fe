@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://dwf-m7-postgresql.herokuapp.com";
+export const API_BASE_URL = "https://dwf-m7-postgresql.herokuapp.com";
 export const emailRegex =
    /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
 
@@ -110,6 +110,18 @@ export async function reportInfo(data: dataReportInfo): Promise<any> {
 
 export async function getUserPets(token: string) {
    const res = await fetch(`${API_BASE_URL}/me/pets`, {
+      method: "GET",
+      headers: {
+         "Content-Type": "application/json",
+         Authorization: `Bearer ${token}`,
+      },
+   });
+
+   return res.json();
+}
+
+export async function getPetById(petId: string, token: string) {
+   const res = await fetch(`${API_BASE_URL}/me/pets/${petId}`, {
       method: "GET",
       headers: {
          "Content-Type": "application/json",

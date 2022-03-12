@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import css from "./index.css";
-import { useNavigate } from "react-router-dom";
 import { getUserPets } from "lib/apis";
-import { useTokenValue } from "hooks/hooks";
+import { useTokenValue } from "atoms/atoms";
 import { PetCard } from "ui/pet-card/PetCard";
 
 export function MyPetsPage() {
-   const navigate = useNavigate();
    const { token } = useTokenValue();
    const [pets, setPets] = useState([]);
 

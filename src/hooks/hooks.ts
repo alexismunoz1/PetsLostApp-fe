@@ -1,86 +1,18 @@
-import { recoilPersist } from "recoil-persist";
-import {
-   atom,
-   useRecoilState,
-   useRecoilValue,
-   selector,
-   useSetRecoilState,
-} from "recoil";
+import React, { useEffect } from "react";
+import { useSetPetEditData } from "atoms/atoms";
+import { getPetById } from "lib/apis";
 
-// ClICK BURGER MENU
-const burgerStateAtom = atom({
-   key: "burgerClick",
-   default: false,
-});
+export async function getDataPetEdit(petId, token) {
+   const setPetEditData = useSetPetEditData();
+   const pet = await getPetById(petId, token);
 
-export const useBurgerState = () => useRecoilState(burgerStateAtom);
-
-// EMAIL
-const { persistAtom } = recoilPersist({
-   key: "user_data",
-   storage: localStorage,
-});
-
-const userEmailAtom = atom({
-   key: "userEmailAtom",
-   default: {
-      email: null,
-   },
-   effects_UNSTABLE: [persistAtom],
-});
-
-export const useUserEmail = () => useRecoilState(userEmailAtom);
-export const useSetUserEmail = () => useSetRecoilState(userEmailAtom);
-export const useUserEmailValue = () => useRecoilValue(userEmailAtom);
-
-// FULLNAME
-
-const userNameAtom = atom({
-   key: "userNameAtom",
-   default: {
-      fullname: null,
-   },
-   effects_UNSTABLE: [persistAtom],
-});
-
-export const useUserName = () => useRecoilState(userNameAtom);
-export const useSetUserName = () => useSetRecoilState(userNameAtom);
-export const useUserNameValue = () => useRecoilValue(userNameAtom);
-
-// USER TOKEN
-const userTokenAtom = atom({
-   key: "userToken",
-   default: {
-      token: null,
-   },
-   effects_UNSTABLE: [persistAtom],
-});
-
-export const useUserToken = () => useRecoilState(userTokenAtom);
-export const useSetUserToken = () => useSetRecoilState(userTokenAtom);
-export const useTokenValue = () => useRecoilValue(userTokenAtom);
-
-// CURRENT CORDS USER
-const curretCordsAtom = atom({
-   key: "curretCords",
-   default: {
-      lat: null,
-      lng: null,
-   },
-});
-
-export const useUserCords = () => useRecoilState(curretCordsAtom);
-export const useSetUserCords = () => useSetRecoilState(curretCordsAtom);
-export const useCordsValue = () => useRecoilValue(curretCordsAtom);
-
-const reportInfoAtom = atom({
-   key: "reportInfo",
-   default: {
-      petId: null,
-      petname: null,
-   },
-});
-
-export const useReportInfo = () => useRecoilState(reportInfoAtom);
-export const useReportInfoValue = () => useRecoilValue(reportInfoAtom);
-export const useSetReportInfo = () => useSetRecoilState(reportInfoAtom);
+   setPetEditData({
+      petid: petId,
+      lat: pet.lat,
+      lng: pet.lng,
+      petimage: pet.petimage,
+      petname: pet.petname,
+      petstate: pet.petstate,
+      ubication: pet.ubication,
+   });
+}

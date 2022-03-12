@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { MainButton } from "ui/buttons/MainButton";
 import { MainInput } from "ui/inputs/MainInput";
-import { useUserEmailValue, useUserNameValue, useUserToken } from "hooks/hooks";
+import { useUserEmailValue, useUserNameValue, useUserToken } from "atoms/atoms";
 import { getTokenUser } from "lib/apis";
 
 export function LoginPage() {

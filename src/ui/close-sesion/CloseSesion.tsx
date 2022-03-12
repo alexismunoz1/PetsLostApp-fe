@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
 import {
@@ -7,7 +7,7 @@ import {
    useSetUserToken,
    useSetUserCords,
    useBurgerState,
-} from "hooks/hooks";
+} from "atoms/atoms";
 
 export function CloseSesion() {
    const navigate = useNavigate();
@@ -34,8 +34,8 @@ export function CloseSesion() {
             token: null,
          });
          setCords({
-            lat: null,
-            lng: null,
+            currentLat: null,
+            currentLng: null,
          });
 
          navigate("/");

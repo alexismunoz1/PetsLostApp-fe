@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MainInput } from "ui/inputs/MainInput";
 import { MainButton } from "ui/buttons/MainButton";
 import { MainTextarea } from "ui/textarea/MainTextarea";
-import { useReportInfoValue, useTokenValue } from "hooks/hooks";
+import { useReportInfoValue, useTokenValue } from "atoms/atoms";
 import { reportInfo } from "lib/apis";
 
 export function ReportInfoPage() {

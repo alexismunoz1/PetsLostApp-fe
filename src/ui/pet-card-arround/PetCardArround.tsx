@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
-import { useTokenValue, useSetReportInfo } from "hooks/hooks";
+import { useTokenValue, useSetReportInfo } from "atoms/atoms";
 
 type petProps = {
    petId: string;

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { MainButton } from "ui/buttons/MainButton";
 import { MainInput } from "ui/inputs/MainInput";
-import { useUserToken, useUserEmail, useUserName } from "hooks/hooks";
+import { useUserToken, useUserEmail, useUserName } from "atoms/atoms";
 import { emailRegex, getTokenUser, singup } from "lib/apis";
 
 export function MyDataPage() {

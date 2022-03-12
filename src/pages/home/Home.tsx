@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MainButton } from "ui/buttons/MainButton";
-import { useUserCords } from "hooks/hooks";
+import { useUserCords } from "atoms/atoms";
 import { getPetsAround } from "lib/apis";
 import { PetCardArround } from "ui/pet-card-arround/PetCardArround";
 
@@ -9,22 +9,22 @@ function Home() {
    const [pets, setPets] = useState([]);
 
    useEffect(() => {
-      if (cords.lat && cords.lng) {
+      if (cords.currentLat && cords.currentLng) {
          getPets();
       }
    }, [cords]);
 
    const getPets = async () => {
       navigator.geolocation.getCurrentPosition((position) => {
-         const lat = position.coords.latitude;
-         const lng = position.coords.longitude;
+         const currentLat = position.coords.latitude;
+         const currentLng = position.coords.longitude;
          setCords({
-            lat,
-            lng,
+            currentLat,
+            currentLng,
          });
       });
 
-      const petsAround = await getPetsAround(cords.lat, cords.lng);
+      const petsAround = await getPetsAround(cords.currentLat, cords.currentLng);
 
       if (petsAround) {
          setPets(petsAround);

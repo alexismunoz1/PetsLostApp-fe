@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
-import { useUserToken, useBurgerState } from "hooks/hooks";
+import { useUserToken, useBurgerState } from "atoms/atoms";
 import { CloseSesion } from "ui/close-sesion/CloseSesion";
 
 const inactive = css.menu;

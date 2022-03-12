@@ -2,7 +2,7 @@ import React from "react";
 import css from "./index.css";
 import logo from "assets/logo.svg";
 import { BurgerMenu } from "ui/burger/Burger";
-import { useBurgerState } from "hooks/hooks";
+import { useBurgerState } from "atoms/atoms";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
