@@ -25,7 +25,7 @@ export function MyPetsPage() {
                      petid={pet.id}
                      image={pet.petimage}
                      petname={pet.petname}
-                     ubication={pet.ubicación}
+                     ubication={pet.ubication}
                      state={pet.petstate}
                   />
                ))

@@ -163,3 +163,17 @@ export async function editPet(petData: petData, token: string) {
 
    return res.json();
 }
+
+export async function updateStatePet(petid: string, token: string): Promise<any> {
+   return await fetch(`${API_BASE_URL}/me/pets/state`, {
+      method: "PUT",
+      headers: {
+         "Content-Type": "application/json",
+         Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+         petid,
+         petstate: "found",
+      }),
+   });
+}
