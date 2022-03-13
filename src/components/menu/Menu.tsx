@@ -23,7 +23,7 @@ export function Menu() {
                navigate("/my-pets");
                break;
             case "ReportPet":
-               navigate("/report-pets");
+               navigate("/report-pet");
                break;
          }
       } else {

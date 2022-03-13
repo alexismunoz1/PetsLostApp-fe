@@ -133,14 +133,34 @@ export async function getPetById(petId: string, token: string) {
 }
 
 type petData = {
-   petid: string;
+   petid?: string;
    lat: string;
    lng: string;
    petimage: string;
    petname: string;
-   petstate: string;
+   petstate?: string;
    ubication: string;
 };
+
+export async function createPet(petData: petData, token: string) {
+   const { petname, lat, lng, ubication, petimage } = petData;
+   const res = await fetch(`${API_BASE_URL}/me/pets`, {
+      method: "POST",
+      headers: {
+         "Content-Type": "application/json",
+         Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+         lat,
+         lng,
+         petname,
+         petimage,
+         ubication,
+      }),
+   });
+
+   return res.json();
+}
 
 export async function editPet(petData: petData, token: string) {
    const { petid, lat, lng, petimage, petname, ubication } = petData;
@@ -155,8 +175,8 @@ export async function editPet(petData: petData, token: string) {
          petid,
          lat,
          lng,
-         petimage,
          petname,
+         petimage,
          ubication,
       }),
    });

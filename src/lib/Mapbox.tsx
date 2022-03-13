@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+import ReactMapboxGl, { Layer, Feature, Marker } from "react-mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { MainButton } from "ui/buttons/MainButton";
-import { usePetEditData, useCordsValue } from "atoms/atoms";
+import { useSetMapboxAtom } from "atoms/atoms";
 
-const initialCoords: any = [-64.5965932, -34.8403116];
 const Map = ReactMapboxGl({
    accessToken:
       "pk.eyJ1IjoiYWxleGlzbXVub3oxIiwiYSI6ImNrdzVqb3loODJxYXAycHBhdjVzZWtpY3QifQ.V-0kAfHQOapkN5HrZdmUUA",
 });
-
-const boxStyles = {
+const dafultCoords: [number, number] = [-64.5965932, -34.8403116];
+const boxStyles: { [key: string]: string } = {
    padding: "0 10px",
    height: "50px",
    fontFamily: "Poppins",
@@ -22,34 +21,32 @@ const boxStyles = {
    background: "#ffffff",
 };
 
-export function MapboxSeach() {
-   const { currentLat, currentLng } = useCordsValue();
-   const [petData, setPetData] = usePetEditData();
+export function MapboxSeach(props?: any): JSX.Element {
+   const { initPetCoords } = props;
+   const setDataMap = useSetMapboxAtom();
    const [query, setQuery] = useState("");
-   const [coords, setCoords] = useState(initialCoords);
+   const [coords, setCoords] = useState(dafultCoords);
 
    useEffect(() => {
-      if (petData.lat) {
-         setCoords([petData.lng, petData.lat]);
-      }
-   }, [petData.lat]);
-
-   function inputChangeHandler(e) {
-      setQuery(e.target.value);
-      if (e.key == "Enter") search();
-   }
+      if (initPetCoords) setCoords([initPetCoords.lng, initPetCoords.lat]);
+   }, []);
 
    async function search() {
       const data = await fetch(
          `https://us1.locationiq.com/v1/search.php?key=pk.bf4604bc2b3ea328e732de26a4387fa9&q=${query}&format=json`
       ).then((r) => r.json());
 
-      setPetData({
-         ...petData,
-         lat: parseFloat(data[0].lat),
-         lng: parseFloat(data[0].lon),
-         ubication: data[0].display_name,
+      setCoords([data[0].lon, data[0].lat]);
+      setDataMap({
+         mapLat: parseFloat(data[0].lat),
+         mapLng: parseFloat(data[0].lon),
+         mapUbication: data[0].display_name,
       });
+   }
+
+   function inputChangeHandler(e) {
+      setQuery(e.target.value);
+      if (e.key == "Enter") search();
    }
 
    return (
@@ -79,11 +76,16 @@ export function MapboxSeach() {
             <div onClick={search}>
                <MainButton>Buscar</MainButton>
             </div>
+            <p>
+               Buscá un punto de referencia para reportar a tu mascota. Puede ser una
+               dirección, un barrio o una ciudad.
+            </p>
          </div>
       </div>
    );
 }
 
+// const { currentLat, currentLng } = useCordsValue();
 // if (!petData.lat && currentLat) {
 // setCoords([currentLng, currentLat]);
 // console.log("hay current lat y no pet lat");

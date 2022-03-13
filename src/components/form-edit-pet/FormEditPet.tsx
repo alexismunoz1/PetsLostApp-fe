@@ -1,24 +1,53 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { MapboxSeach } from "lib/Mapbox";
-import { Dropzone } from "lib/Dropzone";
-import { usePetEditData, useTokenValue } from "atoms/atoms";
-import { editPet, updateStatePet, deletePet } from "lib/apis";
 import { MainInput } from "ui/inputs/MainInput";
 import { MainButton } from "ui/buttons/MainButton";
+import { Dropzone } from "lib/Dropzone";
+import { MapboxSeach } from "lib/Mapbox";
+import { editPet, updateStatePet, deletePet } from "lib/apis";
+import {
+   usePetEditData,
+   useTokenValue,
+   useDropzoneAtomValue,
+   useMapboxAtomValue,
+} from "atoms/atoms";
 
-export function FormEditPet() {
+export function FormEditPet(): JSX.Element {
    const navigate = useNavigate();
    const [petData, setPetData] = usePetEditData();
-   const { token } = useTokenValue();
-   const [petName, setPetName] = useState("");
+   const { mapLat, mapLng, mapUbication } = useMapboxAtomValue();
+   const { dropImage }: { dropImage: string } = useDropzoneAtomValue();
+   const { token }: { token: string } = useTokenValue();
+   const [petName, setPetName] = useState(null);
 
    useEffect(() => {
-      setPetData({
-         ...petData,
-         petname: petName,
-      });
+      if (petName) {
+         setPetData({
+            ...petData,
+            petname: petName,
+         });
+      }
    }, [petName]);
+
+   useEffect(() => {
+      if (dropImage) {
+         setPetData({
+            ...petData,
+            petimage: dropImage,
+         });
+      }
+   }, [dropImage]);
+
+   useEffect(() => {
+      if (mapUbication) {
+         setPetData({
+            ...petData,
+            lat: mapLat,
+            lng: mapLng,
+            ubication: mapUbication,
+         });
+      }
+   }, [mapUbication]);
 
    const inputChangeHandler = (e) => {
       setPetName(e.target.value);
@@ -32,9 +61,10 @@ export function FormEditPet() {
    };
 
    const updatePetState = () => {
-      updateStatePet(petData.petid, token);
-      alert('Se ha actualizado el estado de la mascota a "Encontradx"');
-      navigate("/my-pets");
+      updateStatePet(petData.petid, token).then(() => {
+         alert("Mascota reportada");
+         navigate("/");
+      });
    };
 
    const cancelUpdate = () => {
@@ -52,18 +82,16 @@ export function FormEditPet() {
 
    return (
       <div>
-         <div>
-            <MainInput
-               name={"petname"}
-               label={"nombre de la mascota"}
-               onChange={inputChangeHandler}
-               defaultValue={petData.petname}
-            />
-            <Dropzone />
-            <MapboxSeach />
-            <div onClick={updatePetData}>
-               <MainButton>Guardar</MainButton>
-            </div>
+         <MainInput
+            name={"petname"}
+            label={"nombre de la mascota"}
+            onChange={inputChangeHandler}
+            defaultValue={petData.petname}
+         />
+         <Dropzone initPreview={petData.petimage} />
+         <MapboxSeach initPetCoords={{ lat: petData.lat, lng: petData.lng }} />
+         <div onClick={updatePetData}>
+            <MainButton>Guardar</MainButton>
          </div>
          <div onClick={updatePetState}>
             <MainButton>Reportar como encontradx</MainButton>

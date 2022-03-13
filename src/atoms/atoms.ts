@@ -115,3 +115,45 @@ const petEditDataAtom = atom({
 export const usePetEditData = () => useRecoilState(petEditDataAtom);
 export const usePetEditDataValue = () => useRecoilValue(petEditDataAtom);
 export const useSetPetEditData = () => useSetRecoilState(petEditDataAtom);
+
+// DATA DE LA MASCOTA A REPORTAR
+const createPetDataAtom = atom({
+   key: "createPetData",
+   default: {
+      lat: null,
+      lng: null,
+      petname: null,
+      petimage: null,
+      ubication: null,
+   },
+});
+
+export const useCreatePet = () => useRecoilState(createPetDataAtom);
+export const useCreatePetValue = () => useRecoilValue(createPetDataAtom);
+export const useSetCreatePet = () => useSetRecoilState(createPetDataAtom);
+
+// IMAGEN DE DROPZONE
+const dropzoneAtom = atom({
+   key: "dropzone",
+   default: {
+      dropImage: null,
+   },
+});
+
+export const useDropzoneAtom = () => useRecoilState(dropzoneAtom);
+export const useDropzoneAtomValue = () => useRecoilValue(dropzoneAtom);
+export const useSetDropzoneAtom = () => useSetRecoilState(dropzoneAtom);
+
+// CORDS Y UBICACION DE MAPBOX
+const mapboxAtom = atom({
+   key: "mapbox",
+   default: {
+      mapLat: null,
+      mapLng: null,
+      mapUbication: null,
+   },
+});
+
+export const useMapboxAtom = () => useRecoilState(mapboxAtom);
+export const useMapboxAtomValue = () => useRecoilValue(mapboxAtom);
+export const useSetMapboxAtom = () => useSetRecoilState(mapboxAtom);
