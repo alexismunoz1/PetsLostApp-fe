@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
-import { useTokenValue, useSetReportInfo } from "atoms/atoms";
+import { useTokenValue, useSetReportInfo } from "hooks/atoms";
 
 type petProps = {
    petId: string;
@@ -17,7 +17,7 @@ export function PetCardArround(props: petProps) {
    const setReportInfo = useSetReportInfo();
 
    const handleClick = (e) => {
-      if (token.token) {
+      if (token) {
          setReportInfo({
             petId,
             petname,

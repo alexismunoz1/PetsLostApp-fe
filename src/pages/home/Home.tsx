@@ -1,72 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { MainButton } from "ui/buttons/MainButton";
-import { useUserCords } from "atoms/atoms";
-import { getPetsAround } from "lib/apis";
-import { PetCardArround } from "ui/pet-card-arround/PetCardArround";
+import React, { useEffect } from "react";
+import { ShowPetsArround } from "components/pets-arround/PetsArround";
+import { useTokenValue, useGetMyPets } from "hooks/atoms";
+import { getUserPets } from "lib/apis";
 
-function Home() {
-   const [cords, setCords] = useUserCords();
-   const [pets, setPets] = useState([]);
+export function HomePage() {
+   const token = useTokenValue();
+   const [{ myPets }, setMyPets] = useGetMyPets();
 
    useEffect(() => {
-      if (cords.currentLat && cords.currentLng) {
-         getPets();
-      }
-   }, [cords]);
-
-   const getPets = async () => {
-      navigator.geolocation.getCurrentPosition((position) => {
-         const currentLat = position.coords.latitude;
-         const currentLng = position.coords.longitude;
-         setCords({
-            currentLat,
-            currentLng,
+      // si hay token y no hay mascotas, deberia traer "mis mascotas"
+      // para hacer un solo request y para tener precargada la data
+      if (token && !myPets[0]) {
+         getUserPets(token).then((myPets) => {
+            setMyPets({ myPets });
          });
-      });
-
-      const petsAround = await getPetsAround(cords.currentLat, cords.currentLng);
-
-      if (petsAround) {
-         setPets(petsAround);
       }
-   };
+   }, []);
 
    return (
-      <div>
-         <h1>Mascotas perdidas cerca tuyo</h1>
-         <div>
-            {pets[1] ? null : (
-               <div>
-                  <p>
-                     Para ver las mascotas reportadas cerca tuyo necesitamos permiso para
-                     conocer tu ubicación.
-                  </p>
-                  <div onClick={getPets}>
-                     <MainButton>Dar mi ubicación</MainButton>
-                  </div>
-               </div>
-            )}
-         </div>
-
-         <div>
-            {pets ? (
-               pets.map((pet) => {
-                  return (
-                     <PetCardArround
-                        key={pet.objectID}
-                        petId={pet.objectID}
-                        image={pet.petimage}
-                        petname={pet.petname}
-                        ubication={pet.ubication}
-                     />
-                  );
-               })
-            ) : (
-               <p>No hay mascotas perdidas cerca tuyo</p>
-            )}
-         </div>
-      </div>
+      <section>
+         <ShowPetsArround />
+      </section>
    );
 }
 
-export { Home };
+// EN HOME
+// si NO hay token, no deberia hacer nada -V
+// si hay token pero ya hay mascotas en el atom, NO deberia hacer un request -V
+
+// EN REPORT PET
+// si se crea una nueva mascota, deberia hacer un request para traer "mis mascotas"
+
+// EN EDIT PET
+// si se modifica una mascota, deberia hacer un request para traer "mis mascotas"

@@ -3,9 +3,8 @@ import { FormAddPet } from "components/form-add-pet/FormAddPet";
 
 export function ReportPetPage() {
    return (
-      <div>
-         <h1>Reportar mascota perdida</h1>
+      <section>
          <FormAddPet />
-      </div>
+      </section>
    );
 }

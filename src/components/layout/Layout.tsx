@@ -1,10 +1,10 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
 import css from "./index.css";
+import { Outlet } from "react-router-dom";
 import { Header } from "components/header/Header";
 import { Menu } from "components/menu/Menu";
 
-function Layout() {
+export function Layout() {
    return (
       <div>
          <Header />
@@ -13,5 +13,3 @@ function Layout() {
       </div>
    );
 }
-
-export { Layout };

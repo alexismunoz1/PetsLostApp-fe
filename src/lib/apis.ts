@@ -14,7 +14,6 @@ export async function checkEmail(email: string): Promise<any> {
    });
 
    const data = await res.json();
-
    if (res.status === 200) {
       return data;
    }
@@ -34,7 +33,6 @@ export async function getTokenUser(email: string, password: string) {
    });
 
    const token = await res.json();
-
    if (res.status === 200) {
       return token;
    }
@@ -47,7 +45,7 @@ type dataSignUp = {
    password: string;
 };
 
-export async function singup(data: dataSignUp) {
+export async function singUp(data: dataSignUp) {
    const res = await fetch(`${API_BASE_URL}/auth`, {
       method: "POST",
       headers: {
@@ -55,13 +53,7 @@ export async function singup(data: dataSignUp) {
       },
       body: JSON.stringify(data),
    });
-
-   const newUser = await res.json();
-
-   if (res.status === 200) {
-      return newUser;
-   }
-   return;
+   return res.json();
 }
 
 export async function getPetsAround(lat, lng) {
@@ -73,7 +65,6 @@ export async function getPetsAround(lat, lng) {
    });
 
    const pets = await res.json();
-
    if (res.status === 200) {
       return pets;
    }
@@ -90,7 +81,6 @@ type dataReportInfo = {
 
 export async function reportInfo(data: dataReportInfo): Promise<any> {
    const { petid, fullname, phonenumber, report, token } = data;
-
    const res = await fetch(`${API_BASE_URL}/pets/report`, {
       method: "POST",
       headers: {
@@ -142,7 +132,7 @@ type petData = {
    ubication: string;
 };
 
-export async function createPet(petData: petData, token: string) {
+export async function createPet(petData, token: string) {
    const { petname, lat, lng, ubication, petimage } = petData;
    const res = await fetch(`${API_BASE_URL}/me/pets`, {
       method: "POST",
@@ -162,7 +152,7 @@ export async function createPet(petData: petData, token: string) {
    return res.json();
 }
 
-export async function editPet(petData: petData, token: string) {
+export async function editPet(petData, token: string) {
    const { petid, lat, lng, petimage, petname, ubication } = petData;
 
    const res = await fetch(`${API_BASE_URL}/me/pets`, {
@@ -184,7 +174,7 @@ export async function editPet(petData: petData, token: string) {
    return res.json();
 }
 
-export async function updateStatePet(petid: string, token: string): Promise<any> {
+export async function updateStatePet(petid: string, token: string) {
    return await fetch(`${API_BASE_URL}/me/pets/state`, {
       method: "PUT",
       headers: {
@@ -198,7 +188,7 @@ export async function updateStatePet(petid: string, token: string): Promise<any>
    });
 }
 
-export async function deletePet(petid: string, token: string): Promise<any> {
+export async function deletePet(petid: string, token: string) {
    return await fetch(`${API_BASE_URL}/me/pets`, {
       method: "DELETE",
       headers: {

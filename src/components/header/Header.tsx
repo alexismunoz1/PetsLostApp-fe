@@ -1,9 +1,9 @@
 import React from "react";
 import css from "./index.css";
 import logo from "assets/logo.svg";
-import { BurgerMenu } from "ui/burger/Burger";
-import { useBurgerState } from "atoms/atoms";
 import { useNavigate } from "react-router-dom";
+import { useBurgerState } from "hooks/atoms";
+import { BurgerMenu } from "ui/burger/Burger";
 
 function Header() {
    const navigate = useNavigate();

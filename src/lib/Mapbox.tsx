@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ReactMapboxGl, { Layer, Feature, Marker } from "react-mapbox-gl";
+import ReactMapboxGl from "react-mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { MainButton } from "ui/buttons/MainButton";
-import { useSetMapboxAtom } from "atoms/atoms";
+import { useSetMapboxAtom } from "hooks/atoms";
 
 const Map = ReactMapboxGl({
    accessToken:
@@ -21,18 +21,23 @@ const boxStyles: { [key: string]: string } = {
    background: "#ffffff",
 };
 
-export function MapboxSeach(props?: any): JSX.Element {
+type MapboxProps = {
+   initPetCoords?: { lat: any; lng: any };
+};
+
+export function MapboxSeach(props: MapboxProps) {
    const { initPetCoords } = props;
    const setDataMap = useSetMapboxAtom();
    const [query, setQuery] = useState("");
    const [coords, setCoords] = useState(dafultCoords);
 
    useEffect(() => {
-      if (initPetCoords) setCoords([initPetCoords.lng, initPetCoords.lat]);
+      // si el usuario dio su ubicación se inicializa el mapa con esa ubicación
+      if (initPetCoords.lat) setCoords([initPetCoords.lng, initPetCoords.lat]);
    }, []);
 
    async function search() {
-      const data = await fetch(
+      const data: Promise<Response> = await fetch(
          `https://us1.locationiq.com/v1/search.php?key=pk.bf4604bc2b3ea328e732de26a4387fa9&q=${query}&format=json`
       ).then((r) => r.json());
 
@@ -60,11 +65,7 @@ export function MapboxSeach(props?: any): JSX.Element {
             zoom={[14]}
             center={coords}
             movingMethod="easeTo"
-         >
-            <Layer type="symbol" id="marker" layout={{ "icon-image": "marker-15" }}>
-               <Feature coordinates={coords} />
-            </Layer>
-         </Map>
+         ></Map>
          <div>
             <input
                type="text"
@@ -84,9 +85,3 @@ export function MapboxSeach(props?: any): JSX.Element {
       </div>
    );
 }
-
-// const { currentLat, currentLng } = useCordsValue();
-// if (!petData.lat && currentLat) {
-// setCoords([currentLng, currentLat]);
-// console.log("hay current lat y no pet lat");
-// }

@@ -2,7 +2,7 @@ import React from "react";
 import css from "./index.css";
 import iconEdit from "assets/iconEdit.svg";
 import { useNavigate } from "react-router-dom";
-import { useSetPetEditData, useTokenValue } from "atoms/atoms";
+import { useSetPetEditData, useTokenValue } from "hooks/atoms";
 import { getPetById } from "lib/apis";
 
 type PetData = {
@@ -16,7 +16,7 @@ type PetData = {
 export function PetCard(props: PetData) {
    const { petid, image, petname, ubication, state } = props;
    const navigate = useNavigate();
-   const { token } = useTokenValue();
+   const token = useTokenValue();
    const setPetEditData = useSetPetEditData();
 
    const handleClick = () => {

@@ -2,42 +2,33 @@ import React from "react";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
 import {
-   useUserEmail,
-   useSetUserName,
-   useSetUserToken,
-   useSetUserCords,
+   useSetUserCoords,
+   useUserDataAtom,
    useBurgerState,
-} from "atoms/atoms";
+   useSetMyPets,
+} from "hooks/atoms";
 
 export function CloseSesion() {
    const navigate = useNavigate();
+   const setCoords = useSetUserCoords();
+   const setMyPets = useSetMyPets();
+   const [{ email }, setUseData] = useUserDataAtom();
    const [burgerState, setBurgerState] = useBurgerState();
-
-   const [{ email }, setEmail] = useUserEmail();
-   const setName = useSetUserName();
-   const setToken = useSetUserToken();
-   const setCords = useSetUserCords();
 
    const handleClick = (e) => {
       setBurgerState(!burgerState);
 
       if (e.target.textContent == "Cerrar sesion") {
          localStorage.removeItem("user_data");
-
-         setEmail({
+         setUseData({
             email: null,
-         });
-         setName({
             fullname: null,
-         });
-         setToken({
             token: null,
          });
-         setCords({
-            currentLat: null,
-            currentLng: null,
+         setCoords({ currentLat: null, currentLng: null });
+         setMyPets({
+            myPets: [],
          });
-
          navigate("/");
       } else {
          navigate("/verify-email");
