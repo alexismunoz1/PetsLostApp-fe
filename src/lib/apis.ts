@@ -46,12 +46,17 @@ type dataSignUp = {
 };
 
 export async function singUp(data: dataSignUp) {
+   const { fullname, email, password } = data;
    const res = await fetch(`${API_BASE_URL}/auth`, {
       method: "POST",
       headers: {
          "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+         fullname,
+         email,
+         password,
+      }),
    });
    return res.json();
 }

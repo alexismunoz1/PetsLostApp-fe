@@ -10,6 +10,7 @@ import {
 const emailStyle = {
    fontFamily: "Poppins",
    fontSize: "24px",
+   color: "#222",
 };
 
 const signOff: any = {

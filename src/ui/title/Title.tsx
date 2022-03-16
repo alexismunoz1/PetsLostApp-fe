@@ -7,7 +7,7 @@ const TitleSyles: any = {
    textAlign: "center",
    fontSize: "40px",
    lineHeight: "60px",
-   color: "#000000",
+   color: "#222",
    maxWidth: "379px",
 };
 

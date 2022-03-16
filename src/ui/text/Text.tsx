@@ -7,7 +7,7 @@ const TextStyles: any = {
    fontSize: "16px",
    textAlign: "center",
    textTransform: "uppercase",
-   color: "#000000",
+   color: "#222",
    maxWidth: "379px",
 };
 

@@ -12,9 +12,9 @@ const inputStyles = {
    fontFamily: "Poppins",
    fontWeight: "500",
    fontSize: "16px",
-   color: "#000000",
+   color: "#222",
    borderRadius: "4px",
-   border: "2px solid #000000",
+   border: "2px solid #333",
    background: "#ffffff",
 };
 
@@ -23,7 +23,7 @@ const labelStyles: any = {
    fontFamily: "Poppins",
    fontWeight: "500",
    fontSize: "16px",
-   color: "#000000",
+   color: "#222",
    textTransform: "uppercase",
 };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MainInput } from "ui/inputs/MainInput";
 import { MainButton } from "ui/buttons/MainButton";
+import { ButtonSpinner } from "ui/buttons/ButtonSpinner";
 import { Dropzone } from "lib/Dropzone";
 import { MapboxSeach } from "lib/Mapbox";
 import { editPet, updateStatePet, deletePet, getUserPets } from "lib/apis";
@@ -124,10 +125,10 @@ export function FormEditPet() {
          />
          <Dropzone initPreview={petData.petimage} />
          <MapboxSeach initPetCoords={{ lat: petData.lat, lng: petData.lng }} />
-         <MainButton handleClick={updatePetData}>Guardar</MainButton>
-         <MainButton handleClick={updatePetState} color={"green"}>
+         <ButtonSpinner handleClick={updatePetData}>Guardar</ButtonSpinner>
+         <ButtonSpinner handleClick={updatePetState} color={"green"}>
             Reportar como encontradx
-         </MainButton>
+         </ButtonSpinner>
          <MainButton handleClick={cancelUpdate} color={"gray"}>
             Cancelar
          </MainButton>

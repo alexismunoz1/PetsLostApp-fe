@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { PetCardArround } from "ui/pet-card-arround/PetCardArround";
-import { MainButton } from "ui/buttons/MainButton";
+import { ButtonSpinner } from "ui/buttons/ButtonSpinner";
 import { Text } from "ui/text/Text";
 import { useUserCoords } from "hooks/atoms";
 import { getPetsAround } from "lib/apis";
@@ -63,9 +63,9 @@ export function ShowPetsArround() {
                   Para ver las mascotas reportadas cerca tuyo necesitamos permiso para
                   conocer tu ubicación.
                </Text>
-               <MainButton color={"pink"} handleClick={getCoords}>
+               <ButtonSpinner color={"pink"} handleClick={getCoords}>
                   Dar mi ubicación
-               </MainButton>
+               </ButtonSpinner>
             </div>
          )}
       </div>

@@ -16,14 +16,15 @@ const defaultStyles = {
 };
 
 type BtnProps = {
-   children: string;
+   children: any;
    handleClick?: () => void;
    color?: "green" | "gray" | "pink";
 };
 
-export function MainButton(props: BtnProps) {
+export function ButtonSpinner(props: BtnProps) {
    let { children, handleClick, color } = props;
    const [colorBtn, setColorBtn] = useState(defaultStyles);
+   const [loading, setLoading] = useState(false);
 
    useEffect(() => {
       if (color == "gray") setColorBtn({ ...colorBtn, background: "#CDCDCD" });
@@ -31,9 +32,14 @@ export function MainButton(props: BtnProps) {
       if (color == "green") setColorBtn({ ...colorBtn, background: "#97EA9F" });
    }, []);
 
+   const handleClickBtn = () => {
+      setLoading(!loading);
+      handleClick && handleClick();
+   };
+
    return (
-      <button style={colorBtn} onClick={handleClick}>
-         {children}
+      <button style={colorBtn} onClick={() => handleClickBtn()}>
+         {loading ? <Spinner /> : children}
       </button>
    );
 }

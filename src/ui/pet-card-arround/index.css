@@ -1,7 +1,7 @@
 .card {
    max-width: 335px;
    flex-direction: column;
-   border: 2px solid #000000;
+   border: 2px solid #444;
    box-sizing: border-box;
    border-radius: 4px;
    margin: 30px;
@@ -27,7 +27,7 @@
    margin: 0;
    font-weight: bold;
    font-size: 35px;
-   color: #000000;
+   color: #222;
 }
 
 .card__ubication {
@@ -35,7 +35,7 @@
    font-weight: 500;
    font-size: 16px;
    text-transform: uppercase;
-   color: #000000;
+   color: #222;
 }
 
 .card__state {
