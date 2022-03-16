@@ -13,7 +13,24 @@ import {
    useSetMyPets,
 } from "hooks/atoms";
 
-export function FormEditPet(): JSX.Element {
+const divStyle: any = {
+   display: "flex",
+   alignItems: "center",
+   marginBottom: "40px",
+   flexDirection: "column",
+};
+
+const deleteStyle: any = {
+   margin: "20px 0 40px 0",
+   color: "#ff3a3a",
+   fontSize: "16px",
+   fontWeight: "500",
+   cursor: "pointer",
+   fontFamily: "Poppins",
+   textDecorationLine: "underline",
+};
+
+export function FormEditPet() {
    const navigate = useNavigate();
    const token = useTokenValue();
    const [petData, setPetData] = usePetEditData();
@@ -98,8 +115,7 @@ export function FormEditPet(): JSX.Element {
    };
 
    return (
-      <div>
-         <h1>Editar mascota perdida</h1>
+      <div style={divStyle}>
          <MainInput
             name={"petname"}
             label={"nombre de la mascota"}
@@ -108,16 +124,16 @@ export function FormEditPet(): JSX.Element {
          />
          <Dropzone initPreview={petData.petimage} />
          <MapboxSeach initPetCoords={{ lat: petData.lat, lng: petData.lng }} />
-         <div onClick={updatePetData}>
-            <MainButton>Guardar</MainButton>
-         </div>
-         <div onClick={updatePetState}>
-            <MainButton>Reportar como encontradx</MainButton>
-         </div>
-         <div onClick={cancelUpdate}>
-            <MainButton>Cancelar</MainButton>
-         </div>
-         <p onClick={deletePetData}>DESPUBLICAR</p>
+         <MainButton handleClick={updatePetData}>Guardar</MainButton>
+         <MainButton handleClick={updatePetState} color={"green"}>
+            Reportar como encontradx
+         </MainButton>
+         <MainButton handleClick={cancelUpdate} color={"gray"}>
+            Cancelar
+         </MainButton>
+         <p onClick={deletePetData} style={deleteStyle}>
+            DESPUBLICAR
+         </p>
       </div>
    );
 }

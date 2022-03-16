@@ -5,6 +5,13 @@ import { MainButton } from "ui/buttons/MainButton";
 import { emailRegex, getTokenUser, singUp } from "lib/apis";
 import { useUserDataAtom } from "hooks/atoms";
 
+const formStyle: any = {
+   display: "flex",
+   alignItems: "center",
+   marginBottom: "40px",
+   flexDirection: "column",
+};
+
 export function FormMyData() {
    const navigate = useNavigate();
    const [userData, setUserData] = useUserDataAtom();
@@ -32,8 +39,7 @@ export function FormMyData() {
 
    return (
       <div>
-         <h1>My Data</h1>
-         <form onSubmit={handleSubmit}>
+         <form onSubmit={handleSubmit} style={formStyle}>
             <MainInput
                label={"nombre"}
                name={"fullname"}

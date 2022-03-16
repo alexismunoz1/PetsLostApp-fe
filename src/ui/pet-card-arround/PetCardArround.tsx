@@ -12,11 +12,11 @@ type petProps = {
 
 export function PetCardArround(props: petProps) {
    const { image, petname, ubication, petId } = props;
-   const navigate = useNavigate();
    const token = useTokenValue();
+   const navigate = useNavigate();
    const setReportInfo = useSetReportInfo();
 
-   const handleClick = (e) => {
+   const handleClick = () => {
       if (token) {
          setReportInfo({
             petId,
@@ -37,7 +37,7 @@ export function PetCardArround(props: petProps) {
                <p className={css["card__ubication"]}>{ubication}</p>
             </div>
             <p className={css["card__report-info"]} onClick={handleClick}>
-               Reportar información
+               Reportar <br /> información
             </p>
          </div>
       </div>

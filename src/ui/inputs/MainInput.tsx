@@ -1,30 +1,56 @@
 import React from "react";
-import css from "./index.css";
+
+const divStyle: any = {
+   display: "flex",
+   flexDirection: "column",
+   margin: "10px",
+};
+
+const inputStyles = {
+   padding: "0 10px",
+   height: "50px",
+   fontFamily: "Poppins",
+   fontWeight: "500",
+   fontSize: "16px",
+   color: "#000000",
+   borderRadius: "4px",
+   border: "2px solid #000000",
+   background: "#ffffff",
+};
+
+const labelStyles: any = {
+   margin: "0",
+   fontFamily: "Poppins",
+   fontWeight: "500",
+   fontSize: "16px",
+   color: "#000000",
+   textTransform: "uppercase",
+};
 
 type MainInputProps = {
    label?: string;
    type?: string;
-   placeholder?: string;
    name?: string;
    value?: string;
-   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+   placeholder?: string;
    defaultValue?: string;
+   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export function MainInput(props: MainInputProps) {
-   const { label, type, placeholder, name, onChange, value, defaultValue } = props;
+   const { label, type, name, value, placeholder, defaultValue, onChange } = props;
 
    return (
-      <div className={css.root}>
-         <label className={css.label}> {label ? label : ""} </label>
+      <div style={divStyle}>
+         <label style={labelStyles}> {label ? label : ""} </label>
          <input
+            style={inputStyles}
             type={type ? type : "text"}
             name={name}
             value={value}
-            onChange={onChange}
             placeholder={placeholder ? placeholder : ""}
             defaultValue={defaultValue ? defaultValue : ""}
-            className={css.input}
+            onChange={onChange}
          ></input>
       </div>
    );

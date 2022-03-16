@@ -18,9 +18,19 @@
 }
 
 .menu-div-text {
+   margin: 0 auto;
+   display: grid;
+   gap: 45px;
+   max-width: 200px;
 }
 
 .menu-text {
+   font-family: Poppins;
+   font-weight: bold;
+   font-size: 24px;
+   color: #000000;
+   line-height: 36px;
+   cursor: pointer;
 }
 
 .menu-text {

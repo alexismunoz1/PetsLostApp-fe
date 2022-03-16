@@ -5,6 +5,20 @@ import { MainButton } from "ui/buttons/MainButton";
 import { MainTextarea } from "ui/textarea/MainTextarea";
 import { useReportInfoValue, useTokenValue } from "hooks/atoms";
 import { reportInfo } from "lib/apis";
+import { Title } from "ui/title/Title";
+
+const formStyle: any = {
+   display: "flex",
+   flexDirection: "column",
+   alignItems: "center",
+};
+
+const boxStyle: any = {
+   display: "flex",
+   flexDirection: "column",
+   alignItems: "center",
+   marginBottom: "40px",
+};
 
 export function ReportInfoComp() {
    const navigate = useNavigate();
@@ -39,17 +53,15 @@ export function ReportInfoComp() {
    };
 
    return (
-      <div>
-         <h1>Reportar información de {petname}</h1>
-         <form onSubmit={handleSubmit}>
+      <div style={boxStyle}>
+         <Title>Reportar información de {petname}</Title>
+         <form onSubmit={handleSubmit} style={formStyle}>
             <MainInput name={"fullname"} label={"tu nombre"} />
             <MainInput name={"phonenumber"} label={"tu telefono"} />
             <MainTextarea name={"report"} label={"donde lo viste?"} />
             <MainButton>Enviar</MainButton>
          </form>
-         <div onClick={cancelReport}>
-            <MainButton>Cancelar</MainButton>
-         </div>
+         <MainButton handleClick={cancelReport}>Cancelar</MainButton>
       </div>
    );
 }

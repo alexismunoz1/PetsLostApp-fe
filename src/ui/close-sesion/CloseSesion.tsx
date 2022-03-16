@@ -1,5 +1,4 @@
 import React from "react";
-import css from "./index.css";
 import { useNavigate } from "react-router-dom";
 import {
    useSetUserCoords,
@@ -8,6 +7,20 @@ import {
    useSetMyPets,
 } from "hooks/atoms";
 
+const emailStyle = {
+   fontFamily: "Poppins",
+   fontSize: "24px",
+};
+
+const signOff: any = {
+   fontFamily: "Poppins",
+   fontSize: "16px",
+   textDecorationLine: "underline",
+   textTransform: "uppercase",
+   color: "#c6558b",
+   cursor: "pointer",
+};
+
 export function CloseSesion() {
    const navigate = useNavigate();
    const setCoords = useSetUserCoords();
@@ -15,19 +28,17 @@ export function CloseSesion() {
    const [{ email }, setUseData] = useUserDataAtom();
    const [burgerState, setBurgerState] = useBurgerState();
 
-   const handleClick = (e) => {
+   const handleSesion = (e) => {
       setBurgerState(!burgerState);
 
       if (e.target.textContent == "Cerrar sesion") {
          localStorage.removeItem("user_data");
+         setCoords({ currentLat: null, currentLng: null });
+         setMyPets({ myPets: [] });
          setUseData({
             email: null,
             fullname: null,
             token: null,
-         });
-         setCoords({ currentLat: null, currentLng: null });
-         setMyPets({
-            myPets: [],
          });
          navigate("/");
       } else {
@@ -37,8 +48,8 @@ export function CloseSesion() {
 
    return (
       <div>
-         <p className={css.email}>{email ? email : ""}</p>
-         <p className={css["sign-off"]} onClick={handleClick}>
+         <p style={emailStyle}>{email ? email : ""}</p>
+         <p style={signOff} onClick={handleSesion}>
             {email ? "Cerrar sesion" : "Iniciar sesion"}
          </p>
       </div>

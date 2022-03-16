@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { PetCardArround } from "ui/pet-card-arround/PetCardArround";
 import { MainButton } from "ui/buttons/MainButton";
+import { Text } from "ui/text/Text";
 import { useUserCoords } from "hooks/atoms";
 import { getPetsAround } from "lib/apis";
+
+const divPetsArroundStyles: any = {
+   display: "flex",
+   flexDirection: "column",
+   alignItems: "center",
+   justifyContent: "center",
+};
 
 export function ShowPetsArround() {
    const [cords, setCoords] = useUserCoords();
@@ -34,10 +42,9 @@ export function ShowPetsArround() {
 
    return (
       <div>
-         <h1>Mascotas perdidas cerca tuyo</h1>
-         <div>
-            {pets ? (
-               pets.map((pet) => (
+         {pets ? (
+            <div style={divPetsArroundStyles}>
+               {pets.map((pet) => (
                   <PetCardArround
                      key={pet.objectID}
                      petId={pet.objectID}
@@ -45,24 +52,22 @@ export function ShowPetsArround() {
                      petname={pet.petname}
                      ubication={pet.ubication}
                   />
-               ))
-            ) : (
-               <p>No hay mascotas perdidas cerca tuyo</p>
-            )}
-         </div>
-         <div>
-            {pets[0] ? null : (
-               <div>
-                  <p>
-                     Para ver las mascotas reportadas cerca tuyo necesitamos permiso para
-                     conocer tu ubicación.
-                  </p>
-                  <div onClick={getCoords}>
-                     <MainButton>Dar mi ubicación</MainButton>
-                  </div>
-               </div>
-            )}
-         </div>
+               ))}
+            </div>
+         ) : (
+            <Text>No hay mascotas perdidas cerca tuyo</Text>
+         )}
+         {pets[0] ? null : (
+            <div style={{ textAlign: "center" }}>
+               <Text>
+                  Para ver las mascotas reportadas cerca tuyo necesitamos permiso para
+                  conocer tu ubicación.
+               </Text>
+               <MainButton color={"pink"} handleClick={getCoords}>
+                  Dar mi ubicación
+               </MainButton>
+            </div>
+         )}
       </div>
    );
 }

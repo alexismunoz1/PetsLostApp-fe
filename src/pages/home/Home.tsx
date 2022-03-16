@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { ShowPetsArround } from "components/pets-arround/PetsArround";
 import { useTokenValue, useGetMyPets } from "hooks/atoms";
 import { getUserPets } from "lib/apis";
+import { Title } from "ui/title/Title";
 
 export function HomePage() {
    const token = useTokenValue();
@@ -19,17 +20,8 @@ export function HomePage() {
 
    return (
       <section>
+         <Title>Mascotas perdidas cerca tuyo</Title>
          <ShowPetsArround />
       </section>
    );
 }
-
-// EN HOME
-// si NO hay token, no deberia hacer nada -V
-// si hay token pero ya hay mascotas en el atom, NO deberia hacer un request -V
-
-// EN REPORT PET
-// si se crea una nueva mascota, deberia hacer un request para traer "mis mascotas"
-
-// EN EDIT PET
-// si se modifica una mascota, deberia hacer un request para traer "mis mascotas"

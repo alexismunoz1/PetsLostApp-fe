@@ -29,7 +29,6 @@ export function GetTokenComp() {
 
    return (
       <div>
-         <h1>Login page</h1>
          <form onSubmit={sendPassword}>
             <MainInput label={"contraseña"} type={"password"} name={"password"} />
             <MainButton>Ingresar</MainButton>

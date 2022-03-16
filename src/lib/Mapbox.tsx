@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactMapboxGl from "react-mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { Text } from "ui/text/Text";
 import { MainButton } from "ui/buttons/MainButton";
 import { useSetMapboxAtom } from "hooks/atoms";
 
@@ -9,7 +10,13 @@ const Map = ReactMapboxGl({
       "pk.eyJ1IjoiYWxleGlzbXVub3oxIiwiYSI6ImNrdzVqb3loODJxYXAycHBhdjVzZWtpY3QifQ.V-0kAfHQOapkN5HrZdmUUA",
 });
 const dafultCoords: [number, number] = [-64.5965932, -34.8403116];
-const boxStyles: { [key: string]: string } = {
+const styleBox: any = {
+   margin: "15px auto 0 auto",
+   display: "flex",
+   flexDirection: "column",
+   alignItems: "center",
+};
+const inputStyles = {
    padding: "0 10px",
    height: "50px",
    fontFamily: "Poppins",
@@ -55,32 +62,32 @@ export function MapboxSeach(props: MapboxProps) {
    }
 
    return (
-      <div>
+      <div style={styleBox}>
          <Map
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{
-               height: "300px",
-               width: "300px",
+               height: "335px",
+               width: "335px",
             }}
             zoom={[14]}
             center={coords}
             movingMethod="easeTo"
          ></Map>
-         <div>
+         <div style={styleBox}>
             <input
                type="text"
                onChange={inputChangeHandler}
                onKeyDown={inputChangeHandler}
                value={query}
-               style={boxStyles}
+               style={inputStyles}
             />
-            <div onClick={search}>
-               <MainButton>Buscar</MainButton>
-            </div>
-            <p>
+            <MainButton color={"green"} handleClick={search}>
+               Buscar ubicación
+            </MainButton>
+            <Text>
                Buscá un punto de referencia para reportar a tu mascota. Puede ser una
                dirección, un barrio o una ciudad.
-            </p>
+            </Text>
          </div>
       </div>
    );

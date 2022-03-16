@@ -31,7 +31,6 @@ export function VerifyEmailComp() {
 
    return (
       <div>
-         <h1>Verify Email</h1>
          <form onSubmit={handleSubmit}>
             <MainInput label={"Email"} name={"email"} />
             <MainButton>Siguiente</MainButton>

@@ -1,31 +1,38 @@
 import React from "react";
-import css from "./index.css";
 import logo from "assets/logo.svg";
 import { useNavigate } from "react-router-dom";
 import { useBurgerState } from "hooks/atoms";
 import { BurgerMenu } from "ui/burger/Burger";
 
-function Header() {
+const headerStyele: any = {
+   position: "fixed",
+   top: "0",
+   left: "0",
+   width: "100%",
+   zIndex: "10",
+   padding: "13px 20px",
+   display: "flex",
+   flexDirection: "row",
+   justifyContent: "space-between",
+   background: "#ff6868",
+};
+
+export function Header() {
    const navigate = useNavigate();
    const [burgerState, setBurgerState] = useBurgerState();
 
-   const handleClick = (e) => {
-      if (e.target.id == "Logo") {
-         navigate("/");
-         setBurgerState(false);
-      } else {
-         setBurgerState(!burgerState);
-      }
+   const handleClick = () => {
+      navigate("/");
+      setBurgerState(false);
    };
 
    return (
-      <header className={css.root}>
-         <img className="" id="Logo" src={logo} onClick={handleClick} />
-         <div onClick={handleClick}>
-            <BurgerMenu onBurger={burgerState} />
-         </div>
+      <header style={headerStyele}>
+         <img id="logo" src={logo} onClick={handleClick} />
+         <BurgerMenu
+            onBurger={burgerState}
+            handleClick={() => setBurgerState(!burgerState)}
+         />
       </header>
    );
 }
-
-export { Header };

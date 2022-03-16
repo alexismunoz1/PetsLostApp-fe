@@ -1,4 +1,4 @@
-import React, { HTMLProps } from "react";
+import React from "react";
 import css from "./index.css";
 import { useNavigate } from "react-router-dom";
 import { useTokenValue, useBurgerState } from "hooks/atoms";
@@ -9,13 +9,13 @@ const active = `${css.menu} ${css.active}`;
 
 export function Menu() {
    const navigate = useNavigate();
-   const userToken = useTokenValue();
+   const token = useTokenValue();
    const [burgerState, setBurgerState] = useBurgerState();
 
    const handleClick = (e: React.ChangeEvent<any>) => {
       setBurgerState(!burgerState);
 
-      if (userToken) {
+      if (token) {
          switch (e.target.id) {
             case "MyData":
                navigate("/my-data");

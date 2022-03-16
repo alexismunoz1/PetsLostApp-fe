@@ -1,7 +1,6 @@
 import { recoilPersist } from "recoil-persist";
 import {
    atom,
-   AtomEffect,
    RecoilState,
    selector,
    useRecoilState,
@@ -9,11 +8,10 @@ import {
    useSetRecoilState,
 } from "recoil";
 
-const { persistAtom }: { persistAtom: AtomEffect<{ [key: string]: string }> } =
-   recoilPersist({
-      key: "user_data",
-      storage: localStorage,
-   });
+const { persistAtom } = recoilPersist({
+   key: "user_data",
+   storage: localStorage,
+});
 
 // ClICK BURGER MENU
 export const useBurgerState = () => useRecoilState(burgerStateAtom);
@@ -152,20 +150,5 @@ const myPetsAtom: RecoilState<{ myPets: any[] }> = atom({
    default: {
       myPets: [],
    },
+   effects_UNSTABLE: [persistAtom],
 });
-
-// import { getUserPets } from "lib/apis";
-// const getMyPets = selector({
-//    key: "getMyPets",
-//    get: async ({ get }) => {
-//       const { token } = get(userDataAtom);
-//       const { myPets } = await getUserPets(token);
-//       return myPets;
-//    },
-//    set: async ({ set, get }, myPets) => {
-//       set(myPetsAtom, {
-//          ...get(myPetsAtom),
-//          myPets,
-//       });
-//    },
-// });

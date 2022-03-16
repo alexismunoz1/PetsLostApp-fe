@@ -14,6 +14,13 @@ import {
    useCoordsValue,
 } from "hooks/atoms";
 
+const divStyle: any = {
+   display: "flex",
+   flexDirection: "column",
+   alignItems: "center",
+   marginBottom: "40px",
+};
+
 export function FormAddPet() {
    const navigate = useNavigate();
    const token = useTokenValue();
@@ -90,17 +97,16 @@ export function FormAddPet() {
    };
 
    return (
-      <div>
-         <h1>Reportar mascota perdida</h1>
+      <div style={divStyle}>
          <MainInput label={"nombre de la mascota"} onChange={inputChangeHandler} />
          <Dropzone />
          <MapboxSeach initPetCoords={{ lat: currentLat, lng: currentLng }} />
-         <div onClick={sendReport}>
-            <MainButton>Reportar como perdidx</MainButton>
-         </div>
-         <div onClick={cancelReport}>
-            <MainButton>Cancelar</MainButton>
-         </div>
+         <MainButton color={"pink"} handleClick={sendReport}>
+            Reportar como perdidx
+         </MainButton>
+         <MainButton color={"gray"} handleClick={cancelReport}>
+            Cancelar
+         </MainButton>
       </div>
    );
 }

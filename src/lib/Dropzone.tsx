@@ -4,11 +4,14 @@ import { MainButton } from "ui/buttons/MainButton";
 import { useDropzoneAtom } from "hooks/atoms";
 import defaultIcon from "assets/add_icon.svg";
 
-const styleBox = {
+const styleBox: any = {
    width: "333px",
    height: "auto",
    padding: "5px",
    border: "2px dashed #ccc",
+   display: "flex",
+   flexDirection: "column",
+   margin: "0 auto",
 };
 
 type dropProps = {
@@ -40,7 +43,7 @@ export function Dropzone(props: dropProps) {
    return (
       <div {...getRootProps()}>
          <img src={preview} style={styleBox} />
-         <MainButton>Subir imagen</MainButton>
+         <MainButton color={"green"}>Agregar/cambiar imagen</MainButton>
       </div>
    );
 }
