@@ -32,6 +32,7 @@ export function FormMyData() {
       const token: string = await getTokenUser(email, password);
 
       if (user && token) {
+         alert(`Bienvenidx ${fullname}`);
          setUserData({ fullname, email, token });
          navigate("/");
       }
