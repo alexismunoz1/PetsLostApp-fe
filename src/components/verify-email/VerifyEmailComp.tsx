@@ -18,12 +18,16 @@ export function VerifyEmailComp() {
 
       const { email, fullname } = await checkEmail(newEmail);
       if (email && fullname) {
+         //si existe el email
          setUserData({ email, fullname });
          navigate("/login");
       } else {
+         //si no existe el email, propone registrarse
          const result = window.confirm("El emial no existe ¿desea registrarse?");
          if (result) {
-            setUserData({ email });
+            setUserData({
+               email: newEmail,
+            });
             navigate("/my-data");
          }
       }

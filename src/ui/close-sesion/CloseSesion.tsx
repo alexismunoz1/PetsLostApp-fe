@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
+   useTokenValue,
    useSetUserCoords,
    useUserDataAtom,
    useBurgerState,
@@ -24,6 +25,7 @@ const signOff: any = {
 
 export function CloseSesion() {
    const navigate = useNavigate();
+   const token = useTokenValue();
    const setCoords = useSetUserCoords();
    const setMyPets = useSetMyPets();
    const [{ email }, setUseData] = useUserDataAtom();
@@ -49,7 +51,7 @@ export function CloseSesion() {
 
    return (
       <div>
-         <p style={emailStyle}>{email ? email : ""}</p>
+         <p style={emailStyle}>{token ? email : ""}</p>
          <p style={signOff} onClick={handleSesion}>
             {email ? "Cerrar sesion" : "Iniciar sesion"}
          </p>

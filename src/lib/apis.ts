@@ -13,11 +13,7 @@ export async function checkEmail(email: string): Promise<any> {
       }),
    });
 
-   const data = await res.json();
-   if (res.status === 200) {
-      return data;
-   }
-   return;
+   return await res.json();
 }
 
 export async function getTokenUser(email: string, password: string) {
