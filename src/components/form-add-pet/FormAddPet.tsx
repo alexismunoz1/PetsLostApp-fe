@@ -7,7 +7,6 @@ import { MainButton } from "ui/buttons/MainButton";
 import { createPet, getUserPets } from "lib/apis";
 import {
    useSetMyPets,
-   useCreatePet,
    useTokenValue,
    useDropzoneAtomValue,
    useMapboxAtomValue,
@@ -24,7 +23,7 @@ const divStyle: any = {
 export function FormAddPet() {
    const navigate = useNavigate();
    const token = useTokenValue();
-   const [petData, setPetData] = useCreatePet();
+   const [petData, setPetData] = useState(null);
    const [petName, setPetName] = useState("");
    const { currentLat, currentLng } = useCoordsValue();
    const { mapLat, mapLng, mapUbication } = useMapboxAtomValue();

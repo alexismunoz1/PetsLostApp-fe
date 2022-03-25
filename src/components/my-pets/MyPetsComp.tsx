@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { PetCard } from "ui/pet-card/PetCard";
+import { PetCard } from "components/pet-card/PetCard";
 import { Text } from "ui/text/Text";
 import { useGetMyPetsValue } from "hooks/atoms";
 

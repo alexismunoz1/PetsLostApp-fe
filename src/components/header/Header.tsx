@@ -28,7 +28,7 @@ export function Header() {
 
    return (
       <header style={headerStyele}>
-         <img id="logo" src={logo} onClick={handleClick} />
+         <img id="logo" style={{ cursor: "pointer" }} src={logo} onClick={handleClick} />
          <BurgerMenu
             onBurger={burgerState}
             handleClick={() => setBurgerState(!burgerState)}

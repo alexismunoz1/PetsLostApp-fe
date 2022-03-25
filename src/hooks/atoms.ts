@@ -127,21 +127,7 @@ const petEditDataAtom: RecoilState<{ [key: string]: string }> = atom({
    },
 });
 
-// DATA DE LA MASCOTA A REPORTAR COMO PERDIDA
-export const useCreatePet = () => useRecoilState(createPetDataAtom);
-export const useCreatePetValue = () => useRecoilValue(createPetDataAtom);
-export const useSetCreatePet = () => useSetRecoilState(createPetDataAtom);
-const createPetDataAtom: RecoilState<{ [key: string]: string }> = atom({
-   key: "createPetData",
-   default: {
-      lat: null,
-      lng: null,
-      petname: null,
-      petimage: null,
-      ubication: null,
-   },
-});
-
+// MIS MASCOTAS REPORTADAS
 export const useGetMyPets = () => useRecoilState(myPetsAtom);
 export const useGetMyPetsValue = () => useRecoilValue(myPetsAtom);
 export const useSetMyPets = () => useSetRecoilState(myPetsAtom);
